@@ -4,6 +4,7 @@
     <projectModules>
       <modulePath path="$PROJECT_DIR$/languages/dot/dot.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/languages/graph/graph.mpl" folder="" />
+      <modulePath path="$PROJECT_DIR$/languages/sql_ddl/sql_ddl.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/languages/tree/tree.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/languages/tree2graph_v1_onlyLoops/tree2graph_v1_onlyLoops.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/languages/tree2graph_v2_reduce/tree2graph_v2_reduce.mpl" folder="" />
