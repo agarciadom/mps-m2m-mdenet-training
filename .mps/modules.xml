@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MPSProject">
+    <projectModules>
+      <modulePath path="$PROJECT_DIR$/languages/graph/graph.mpl" folder="" />
+      <modulePath path="$PROJECT_DIR$/languages/tree/tree.mpl" folder="" />
+      <modulePath path="$PROJECT_DIR$/languages/tree2Graph_v1_onlyLoops/tree2Graph_v1_onlyLoops.mpl" folder="" />
+      <modulePath path="$PROJECT_DIR$/languages/tree2graph_v2_reduce/tree2graph_v2_reduce.mpl" folder="" />
+      <modulePath path="$PROJECT_DIR$/solutions/test_models/test_models.msd" folder="" />
+    </projectModules>
+  </component>
+</project>
