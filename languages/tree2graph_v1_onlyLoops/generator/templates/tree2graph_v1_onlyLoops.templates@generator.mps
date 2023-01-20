@@ -59,6 +59,7 @@
         <reference id="1200912223215" name="mappingLabel" index="2rW$FS" />
       </concept>
       <concept id="1167514355419" name="jetbrains.mps.lang.generator.structure.Root_MappingRule" flags="lg" index="3lhOvk">
+        <property id="1177959072138" name="keepSourceRoot" index="13Pg2o" />
         <reference id="1167514355421" name="template" index="3lhOvi" />
       </concept>
       <concept id="1167756080639" name="jetbrains.mps.lang.generator.structure.PropertyMacro_GetPropertyValue" flags="in" index="3zFVjK" />
@@ -138,6 +139,7 @@
       <ref role="2rZz_L" to="pt9f:2HO1M945zuq" resolve="Node" />
     </node>
     <node concept="3lhOvk" id="2HO1M945Rx1" role="3lj3bC">
+      <property role="13Pg2o" value="h94ayQF/true_" />
       <ref role="30HIoZ" to="ped9:2HO1M944C8A" resolve="Tree" />
       <ref role="3lhOvi" node="2HO1M945Rx3" resolve="map_Tree" />
       <node concept="30G5F_" id="2HO1M946fOJ" role="30HLyM">

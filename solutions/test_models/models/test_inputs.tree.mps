@@ -4,7 +4,8 @@
   <languages>
     <use id="432dc58d-c6ff-4e39-ac6f-365885fa1c40" name="tree" version="-1" />
     <engage id="29cc3557-dfaa-4d93-b566-0513a0815a17" name="graph" />
-    <engage id="8be664e9-68ce-4ad0-9aef-23b0086fad95" name="tree2graph_v2_reduce" />
+    <engage id="3acecc5e-2b38-4f39-aac8-f994dbc14134" name="tree2xml" />
+    <engage id="41300043-7cbb-44a9-8bb8-5797bda8ccc3" name="tree2graph_v1_onlyLoops" />
   </languages>
   <imports />
   <registry>
