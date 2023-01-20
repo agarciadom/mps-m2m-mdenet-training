@@ -27,7 +27,7 @@
     <property role="TrG5h" value="G" />
     <node concept="1Joz2T" id="2HO1M945N0d" role="1Joz2P">
       <ref role="1Joz2W" node="2HO1M945N08" resolve="n1" />
-      <ref role="1Joz22" node="2HO1M945N0a" resolve="n" />
+      <ref role="1Joz22" node="2HO1M945N0a" resolve="n2" />
     </node>
     <node concept="1Joz2T" id="2HO1M945N0n" role="1Joz2P">
       <ref role="1Joz2W" node="2HO1M945N0j" resolve="n4" />

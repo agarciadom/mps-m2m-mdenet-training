@@ -42,7 +42,7 @@
     <property role="TrG5h" value="Graph" />
     <property role="19KtqR" value="true" />
     <property role="34LRSv" value="graph" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="2HO1M945zul" role="1TKVEi">
       <property role="IQ2ns" value="3131135484681926549" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
@@ -64,15 +64,15 @@
   <node concept="1TIwiD" id="2HO1M945zuq">
     <property role="EcuMT" value="3131135484681926554" />
     <property role="TrG5h" value="Node" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="2HO1M945IkW" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" />
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
   </node>
   <node concept="1TIwiD" id="2HO1M945zur">
     <property role="EcuMT" value="3131135484681926555" />
     <property role="TrG5h" value="Edge" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="2HO1M945zuu" role="1TKVEi">
       <property role="IQ2ns" value="3131135484681926558" />
       <property role="20kJfa" value="source" />

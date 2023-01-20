@@ -48,7 +48,7 @@
     <property role="TrG5h" value="DirectedGraph" />
     <property role="19KtqR" value="true" />
     <property role="34LRSv" value="digraph" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="2mw6R9yCMoO" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
@@ -67,7 +67,7 @@
   <node concept="1TIwiD" id="2mw6R9yCMp0">
     <property role="EcuMT" value="2711197153772119616" />
     <property role="TrG5h" value="Assignment" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyi" id="2mw6R9yCMp1" role="1TKVEl">
       <property role="IQ2nx" value="2711197153772119617" />
       <property role="TrG5h" value="lvalue" />
@@ -83,7 +83,7 @@
     <property role="EcuMT" value="2711197153772119622" />
     <property role="TrG5h" value="DefaultGraphAssignmentStatement" />
     <property role="34LRSv" value="default graph" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="2mw6R9yCMp7" role="1TKVEi">
       <property role="IQ2ns" value="2711197153772119623" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
@@ -99,7 +99,7 @@
     <property role="EcuMT" value="2711197153772119625" />
     <property role="TrG5h" value="DefaultNodeAssignmentStatement" />
     <property role="34LRSv" value="default node" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="2mw6R9yCMpa" role="1TKVEi">
       <property role="IQ2ns" value="2711197153772119626" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
@@ -115,7 +115,7 @@
     <property role="EcuMT" value="2711197153772119628" />
     <property role="TrG5h" value="DefaultEdgeAssignmentStatement" />
     <property role="34LRSv" value="default edge" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="2mw6R9yCMpd" role="1TKVEi">
       <property role="IQ2ns" value="2711197153772119629" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
@@ -131,7 +131,7 @@
     <property role="EcuMT" value="2711197153772119631" />
     <property role="TrG5h" value="NodeCreationStatement" />
     <property role="34LRSv" value="create node" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="2mw6R9yCMpo" role="1TKVEi">
       <property role="IQ2ns" value="2711197153772119640" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
@@ -154,7 +154,7 @@
     <property role="EcuMT" value="2711197153772119634" />
     <property role="TrG5h" value="EdgeCreationStatement" />
     <property role="34LRSv" value="create edge" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="2mw6R9yCMpX" role="1TKVEi">
       <property role="IQ2ns" value="2711197153772119677" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
@@ -176,7 +176,7 @@
   <node concept="1TIwiD" id="2mw6R9yCMpl">
     <property role="EcuMT" value="2711197153772119637" />
     <property role="TrG5h" value="Node" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="2mw6R9yCMpm" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
@@ -184,7 +184,7 @@
   <node concept="1TIwiD" id="2mw6R9yCMpU">
     <property role="EcuMT" value="2711197153772119674" />
     <property role="TrG5h" value="NodeReference" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="2mw6R9yCMpV" role="1TKVEi">
       <property role="IQ2ns" value="2711197153772119675" />
       <property role="20kJfa" value="node" />
