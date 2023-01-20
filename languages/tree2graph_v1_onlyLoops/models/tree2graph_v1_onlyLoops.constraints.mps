@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:ea005fe0-8b03-43a3-8779-c59f79db5abf(tree2Graph_v1_onlyLoops.constraints)">
+<model ref="r:ea005fe0-8b03-43a3-8779-c59f79db5abf(tree2graph_v1_onlyLoops.constraints)">
   <persistence version="9" />
   <languages>
     <use id="5dae8159-ab99-46bb-a40d-0cee30ee7018" name="jetbrains.mps.lang.constraints.rules.kinds" version="0" />

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:015c24a0-6679-4452-86d4-be3f58221434(tree2Graph_v1_onlyLoops.editor)">
+<model ref="r:015c24a0-6679-4452-86d4-be3f58221434(tree2graph_v1_onlyLoops.editor)">
   <persistence version="9" />
   <languages>
     <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="14" />

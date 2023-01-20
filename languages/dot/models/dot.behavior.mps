@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:7aa89158-6cb3-4a75-a8c6-5baac26fa7f3(tree2Graph_v1_onlyLoops.behavior)">
+<model ref="r:127c86ce-3d51-42fe-b250-0cae5ebba5af(dot.behavior)">
   <persistence version="9" />
   <languages>
     <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="19" />

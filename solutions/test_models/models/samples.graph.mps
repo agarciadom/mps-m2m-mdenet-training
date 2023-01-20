@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:e5592053-77b3-4249-9fc2-988485468701(test_models.sampleGraph)">
+<model ref="r:e5592053-77b3-4249-9fc2-988485468701(samples.graph)">
   <persistence version="9" />
   <languages>
     <use id="29cc3557-dfaa-4d93-b566-0513a0815a17" name="graph" version="0" />

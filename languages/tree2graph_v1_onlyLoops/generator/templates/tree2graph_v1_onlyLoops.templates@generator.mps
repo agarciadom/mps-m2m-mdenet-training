@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:155c3755-b0a5-4853-8502-1faf9b0d6d8f(tree2Graph_v1_onlyLoops.templates@generator)">
+<model ref="r:155c3755-b0a5-4853-8502-1faf9b0d6d8f(tree2graph_v1_onlyLoops.templates@generator)">
   <persistence version="9" />
   <languages>
     <use id="29cc3557-dfaa-4d93-b566-0513a0815a17" name="graph" version="0" />
     <devkit ref="a2eb3a43-fcc2-4200-80dc-c60110c4862d(jetbrains.mps.devkit.templates)" />
   </languages>
   <imports>
-    <import index="j74c" ref="r:1d8bdc44-076d-4323-8418-675e1960eff5(tree2Graph_v1_onlyLoops.structure)" />
+    <import index="j74c" ref="r:1d8bdc44-076d-4323-8418-675e1960eff5(tree2graph_v1_onlyLoops.structure)" />
     <import index="ped9" ref="r:536d8086-5ba1-41f5-be1a-c279b7fdfcf7(tree.structure)" />
     <import index="pt9f" ref="r:06cc603a-a949-4be8-a381-c2f77b6ce146(graph.structure)" />
   </imports>

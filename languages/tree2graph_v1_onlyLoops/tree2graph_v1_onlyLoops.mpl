@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<language namespace="tree2Graph_v1_onlyLoops" uuid="41300043-7cbb-44a9-8bb8-5797bda8ccc3" languageVersion="0" moduleVersion="0">
+<language namespace="tree2graph_v1_onlyLoops" uuid="41300043-7cbb-44a9-8bb8-5797bda8ccc3" languageVersion="0" moduleVersion="0">
   <models>
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
@@ -12,7 +12,7 @@
   </facets>
   <accessoryModels />
   <generators>
-    <generator alias="main" namespace="tree2Graph_v1_onlyLoops" uuid="6b639d9b-e9e3-4a13-b39b-bd10859fdbb9">
+    <generator alias="main" namespace="tree2graph_v1_onlyLoops" uuid="6b639d9b-e9e3-4a13-b39b-bd10859fdbb9">
       <models>
         <modelRoot contentPath="${module}/generator" type="default">
           <sourceRoot location="templates" />
@@ -51,8 +51,8 @@
         <module reference="29cc3557-dfaa-4d93-b566-0513a0815a17(graph)" version="0" />
         <module reference="ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)" version="0" />
         <module reference="432dc58d-c6ff-4e39-ac6f-365885fa1c40(tree)" version="0" />
-        <module reference="41300043-7cbb-44a9-8bb8-5797bda8ccc3(tree2Graph_v1_onlyLoops)" version="0" />
-        <module reference="6b639d9b-e9e3-4a13-b39b-bd10859fdbb9(tree2Graph_v1_onlyLoops)" version="0" />
+        <module reference="41300043-7cbb-44a9-8bb8-5797bda8ccc3(tree2graph_v1_onlyLoops)" version="0" />
+        <module reference="6b639d9b-e9e3-4a13-b39b-bd10859fdbb9(tree2graph_v1_onlyLoops)" version="0" />
       </dependencyVersions>
       <mapping-priorities />
     </generator>
@@ -99,7 +99,7 @@
     <module reference="ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)" version="0" />
     <module reference="a9e4c532-c5f5-4bb7-99ef-42abb73bbb70(jetbrains.mps.lang.descriptor.aspects)" version="0" />
     <module reference="432dc58d-c6ff-4e39-ac6f-365885fa1c40(tree)" version="0" />
-    <module reference="41300043-7cbb-44a9-8bb8-5797bda8ccc3(tree2Graph_v1_onlyLoops)" version="0" />
+    <module reference="41300043-7cbb-44a9-8bb8-5797bda8ccc3(tree2graph_v1_onlyLoops)" version="0" />
   </dependencyVersions>
   <extendedLanguages>
     <extendedLanguage>29cc3557-dfaa-4d93-b566-0513a0815a17(graph)</extendedLanguage>
