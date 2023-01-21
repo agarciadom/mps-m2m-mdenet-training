@@ -10,7 +10,9 @@
       <classes generated="true" path="${module}/classes_gen" />
     </facet>
   </facets>
-  <accessoryModels />
+  <accessoryModels>
+    <model modelUID="r:d22e35a7-8d01-4589-af75-e8237024f186(oo2db.mappings)" />
+  </accessoryModels>
   <generators>
     <generator alias="main" namespace="oo2db.generator" uuid="e25f0b1b-1dab-4f6b-8f83-4a79099a55f0">
       <models>

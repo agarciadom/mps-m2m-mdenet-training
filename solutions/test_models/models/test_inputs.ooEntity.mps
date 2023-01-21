@@ -35,12 +35,6 @@
       </concept>
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
     </language>
-    <language id="a4807ec1-c6bb-427e-bcc4-2ff90f8f730b" name="oo2db">
-      <concept id="8291230363862780039" name="oo2db.structure.JavaSQLMapping" flags="ng" index="ZUhqh">
-        <reference id="8291230363862780042" name="to" index="ZUhqs" />
-        <reference id="8291230363862780040" name="from" index="ZUhqu" />
-      </concept>
-    </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
         <property id="1169194664001" name="name" index="TrG5h" />
@@ -132,22 +126,6 @@
       </node>
     </node>
     <node concept="3Tm1VV" id="7cgnxpcXUaq" role="1B3o_S" />
-  </node>
-  <node concept="ZUhqh" id="7cgnxpcYziF">
-    <ref role="ZUhqs" to="kskl:7cgnxpcXQNU" resolve="NVARCHAR" />
-    <ref role="ZUhqu" to="wyt6:~String" resolve="String" />
-  </node>
-  <node concept="ZUhqh" id="7cgnxpcYzle">
-    <ref role="ZUhqu" to="wyt6:~Integer" resolve="Integer" />
-    <ref role="ZUhqs" to="kskl:7cgnxpcU9Nk" resolve="INT" />
-  </node>
-  <node concept="ZUhqh" id="7cgnxpcYzlf">
-    <ref role="ZUhqu" to="wyt6:~Boolean" resolve="Boolean" />
-    <ref role="ZUhqs" to="kskl:7cgnxpcXQNV" resolve="BIT" />
-  </node>
-  <node concept="ZUhqh" id="7cgnxpcYzlg">
-    <ref role="ZUhqu" to="xlxw:~BigDecimal" resolve="BigDecimal" />
-    <ref role="ZUhqs" to="kskl:7cgnxpcXQNW" resolve="NUMBER" />
   </node>
 </model>
 
