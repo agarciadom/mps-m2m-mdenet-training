@@ -168,7 +168,7 @@
         </node>
       </node>
       <node concept="j$656" id="4qcDqILwxTP" role="1fOSGc">
-        <ref role="v9R2y" node="4qcDqILwxTM" resolve="weave_Tree" />
+        <ref role="v9R2y" node="4qcDqILwxTM" resolve="weave_TreeAsNode" />
       </node>
       <node concept="30G5F_" id="7cgnxpcSq0e" role="30HLyM">
         <node concept="3clFbS" id="7cgnxpcSq0f" role="2VODD2">

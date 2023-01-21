@@ -47,7 +47,7 @@
     <property role="EcuMT" value="8291230363861316751" />
     <property role="TrG5h" value="Database" />
     <property role="19KtqR" value="true" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="7cgnxpcT2$6" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
@@ -62,7 +62,7 @@
   <node concept="1TIwiD" id="7cgnxpcT2$7">
     <property role="EcuMT" value="8291230363861395719" />
     <property role="TrG5h" value="Table" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="7cgnxpcT2$n" role="1TKVEi">
       <property role="IQ2ns" value="8291230363861395735" />
       <property role="20kJfa" value="primaryKey" />
@@ -84,7 +84,7 @@
     <property role="EcuMT" value="8291230363861395721" />
     <property role="TrG5h" value="DataType" />
     <property role="19KtqR" value="true" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyi" id="7cgnxpcU$rv" role="1TKVEl">
       <property role="IQ2nx" value="8291230363861796575" />
       <property role="TrG5h" value="canTakeLength" />
@@ -98,7 +98,7 @@
     <property role="EcuMT" value="8291230363861395722" />
     <property role="TrG5h" value="ValueColumn" />
     <property role="34LRSv" value="value column" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="7cgnxpcT2$r" role="PzmwI">
       <ref role="PrY4T" node="7cgnxpcT2$o" resolve="IColumn" />
     </node>
@@ -121,7 +121,7 @@
     <property role="EcuMT" value="8291230363861395730" />
     <property role="TrG5h" value="ForeignKey" />
     <property role="34LRSv" value="foreign key" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="7cgnxpcT2$j" role="1TKVEi">
       <property role="IQ2ns" value="8291230363861395731" />
       <property role="20kJfa" value="table" />
