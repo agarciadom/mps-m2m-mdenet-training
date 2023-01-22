@@ -13,6 +13,7 @@
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
+      <concept id="1465982738277781862" name="jetbrains.mps.baseLanguage.structure.PlaceholderMember" flags="nn" index="2tJIrI" />
       <concept id="1070534760951" name="jetbrains.mps.baseLanguage.structure.ArrayType" flags="in" index="10Q1$e">
         <child id="1070534760952" name="componentType" index="10Q1$1" />
       </concept>
@@ -43,6 +44,7 @@
   </registry>
   <node concept="312cEu" id="7cgnxpcXTL2">
     <property role="TrG5h" value="School" />
+    <node concept="2tJIrI" id="3FtrHaBSzj$" role="jymVt" />
     <node concept="3Tm1VV" id="7cgnxpcXTL3" role="1B3o_S" />
   </node>
   <node concept="312cEu" id="7cgnxpcXTLw">
@@ -108,6 +110,13 @@
         <node concept="3uibUv" id="7cgnxpcXTQ4" role="10Q1$1">
           <ref role="3uigEE" to="wyt6:~String" resolve="String" />
         </node>
+      </node>
+    </node>
+    <node concept="312cEg" id="3FtrHaBSzk7" role="jymVt">
+      <property role="TrG5h" value="worksAt" />
+      <node concept="3Tm1VV" id="3FtrHaBSzjP" role="1B3o_S" />
+      <node concept="3uibUv" id="3FtrHaBSzk5" role="1tU5fm">
+        <ref role="3uigEE" node="7cgnxpcXTL2" resolve="School" />
       </node>
     </node>
     <node concept="3Tm1VV" id="7cgnxpcXTMJ" role="1B3o_S" />
