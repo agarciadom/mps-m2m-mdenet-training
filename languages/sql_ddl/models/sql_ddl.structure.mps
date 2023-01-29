@@ -16,9 +16,6 @@
         <child id="1071489727083" name="linkDeclaration" index="1TKVEi" />
         <child id="1071489727084" name="propertyDeclaration" index="1TKVEl" />
       </concept>
-      <concept id="1169125989551" name="jetbrains.mps.lang.structure.structure.InterfaceConceptDeclaration" flags="ig" index="PlHQZ">
-        <child id="1169127546356" name="extends" index="PrDN$" />
-      </concept>
       <concept id="1169127622168" name="jetbrains.mps.lang.structure.structure.InterfaceConceptReference" flags="ig" index="PrWs8">
         <reference id="1169127628841" name="intfc" index="PrY4T" />
       </concept>
@@ -76,7 +73,14 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="columns" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="7cgnxpcT2$o" resolve="IColumn" />
+      <ref role="20lvS9" node="7cgnxpcT2$a" resolve="ValueColumn" />
+    </node>
+    <node concept="1TJgyj" id="63IsK9Qz1qf" role="1TKVEi">
+      <property role="IQ2ns" value="6984646526514239119" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="constraints" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="7cgnxpcT2$i" resolve="ForeignKey" />
     </node>
     <node concept="PrWs8" id="7cgnxpcT2$8" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
@@ -102,7 +106,7 @@
     <property role="34LRSv" value="value column" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="7cgnxpcT2$r" role="PzmwI">
-      <ref role="PrY4T" node="7cgnxpcT2$o" resolve="IColumn" />
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
     <node concept="1TJgyj" id="7cgnxpcT2$g" role="1TKVEi">
       <property role="IQ2ns" value="8291230363861395728" />
@@ -121,27 +125,23 @@
     <property role="TrG5h" value="ForeignKey" />
     <property role="34LRSv" value="foreign key" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="63IsK9Qz1qj" role="1TKVEi">
+      <property role="IQ2ns" value="6984646526514239123" />
+      <property role="20kJfa" value="sourceColumn" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="7cgnxpcT2$a" resolve="ValueColumn" />
+    </node>
     <node concept="1TJgyj" id="7cgnxpcT2$j" role="1TKVEi">
       <property role="IQ2ns" value="8291230363861395731" />
-      <property role="20kJfa" value="table" />
+      <property role="20kJfa" value="targetTable" />
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="7cgnxpcT2$7" resolve="Table" />
     </node>
     <node concept="1TJgyj" id="7cgnxpcT2$k" role="1TKVEi">
       <property role="IQ2ns" value="8291230363861395732" />
-      <property role="20kJfa" value="column" />
+      <property role="20kJfa" value="targetColumn" />
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="7cgnxpcT2$a" resolve="ValueColumn" />
-    </node>
-    <node concept="PrWs8" id="7cgnxpcT2$t" role="PzmwI">
-      <ref role="PrY4T" node="7cgnxpcT2$o" resolve="IColumn" />
-    </node>
-  </node>
-  <node concept="PlHQZ" id="7cgnxpcT2$o">
-    <property role="EcuMT" value="8291230363861395736" />
-    <property role="TrG5h" value="IColumn" />
-    <node concept="PrWs8" id="63IsK9QjrHf" role="PrDN$">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
   </node>
 </model>
