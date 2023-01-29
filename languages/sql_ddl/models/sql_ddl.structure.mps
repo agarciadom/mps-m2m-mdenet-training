@@ -16,7 +16,9 @@
         <child id="1071489727083" name="linkDeclaration" index="1TKVEi" />
         <child id="1071489727084" name="propertyDeclaration" index="1TKVEl" />
       </concept>
-      <concept id="1169125989551" name="jetbrains.mps.lang.structure.structure.InterfaceConceptDeclaration" flags="ig" index="PlHQZ" />
+      <concept id="1169125989551" name="jetbrains.mps.lang.structure.structure.InterfaceConceptDeclaration" flags="ig" index="PlHQZ">
+        <child id="1169127546356" name="extends" index="PrDN$" />
+      </concept>
       <concept id="1169127622168" name="jetbrains.mps.lang.structure.structure.InterfaceConceptReference" flags="ig" index="PrWs8">
         <reference id="1169127628841" name="intfc" index="PrY4T" />
       </concept>
@@ -102,9 +104,6 @@
     <node concept="PrWs8" id="7cgnxpcT2$r" role="PzmwI">
       <ref role="PrY4T" node="7cgnxpcT2$o" resolve="IColumn" />
     </node>
-    <node concept="PrWs8" id="7cgnxpcTWIf" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
-    </node>
     <node concept="1TJgyj" id="7cgnxpcT2$g" role="1TKVEi">
       <property role="IQ2ns" value="8291230363861395728" />
       <property role="20kJfa" value="dataType" />
@@ -137,13 +136,13 @@
     <node concept="PrWs8" id="7cgnxpcT2$t" role="PzmwI">
       <ref role="PrY4T" node="7cgnxpcT2$o" resolve="IColumn" />
     </node>
-    <node concept="PrWs8" id="7cgnxpcT2$u" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
-    </node>
   </node>
   <node concept="PlHQZ" id="7cgnxpcT2$o">
     <property role="EcuMT" value="8291230363861395736" />
     <property role="TrG5h" value="IColumn" />
+    <node concept="PrWs8" id="63IsK9QjrHf" role="PrDN$">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
   </node>
 </model>
 
