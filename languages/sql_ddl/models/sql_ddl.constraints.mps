@@ -298,7 +298,7 @@
                       </node>
                     </node>
                     <node concept="2AHcQZ" id="63IsK9Qz35w" role="2AJF6D">
-                      <ref role="2AI5Lk" to="wyt6:~Override" />
+                      <ref role="2AI5Lk" to="wyt6:~Override" resolve="Override" />
                     </node>
                   </node>
                   <node concept="2OqwBi" id="63IsK9Qz4fX" role="37wK5m">
