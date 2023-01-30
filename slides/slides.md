@@ -242,6 +242,14 @@ We use a property macro to replace the fixed "n" name with one computed from the
 * We can now make the generator, and try previewing the generated files
 * We'll get the digraph file from the graph that we expected
 
+## Checklist
+
+* Root mapping and reduction rules
+* `COPY_SRCL` node macro
+* Property and reference macros
+* Mapping labels
+* ... and a lot of Alt+Enter and Ctrl+Space :-)
+
 # Tree to Graph
 
 ## Tree language
@@ -254,15 +262,68 @@ We use a property macro to replace the fixed "n" name with one computed from the
 :::
 ::: {.column width="80%"}
 
-* `Tree` is the rootable concept, and the *only* concept
+* `Tree` is the only concept
 * It is a more restricted version of the `Graph` DSL, really
 * It would be nice to reuse the M2M from `Graph` to visualize these
-* We'll just add one more step
+* We'll use a separate generator-only language to try approaches
 
 :::
 ::::::::::::::
 
+## tree2graph.reduction language
 
+* We create a new language without any concepts
+* We declare it "extends" `tree` and `graph`
+* We tell the generator model to use `graph`
+* The language only provides a generator from `tree` to `graph`
+
+## Root template (v1)
+
+![](img/root-template-tree2graph-v1.png)
+
+For now, we just produce a fixed graph.
+
+## Root mapping rule
+
+![](img/root-mapping-tree2graph.png)
+
+We use a condition to only map the root `Tree`.
+
+## Engaging the generator
+
+![](img/model-props-languages.png){height=300px}
+
+* By default, MPS will only use the generators of the languages instantiated in the model
+* We need to tell `tree` to use `tree2graph.reduction` during generation
+
+## Root template (v2)
+
+:::::::::::::: {.columns}
+::: {.column width="50%"}
+
+![](img/root-template-tree2graph-v2.png){height=450px}
+
+:::
+::: {.column width="50%"}
+
+* We can use reduction to map trees to graph nodes
+* We can also use mapping labels to track this reduction
+* We can only reduce nodes once: what do we do for the edges?
+
+:::
+::::::::::::::
+
+## Root template (v3)
+
+![](img/root-template-tree2graph-v3.png){height=450px}
+
+We use LOOP to map inner nodes into edges.
+
+## Root template (v3 target)
+
+![](img/root-template-tree2graph-v3-target.png){height=400px}
+
+We use the `ancestor` [SModel](https://www.jetbrains.com/help/mps/smodel-language.html) operation to fetch the parent `Tree` in a typesafe manner.
 
 # Classes to Databases
 

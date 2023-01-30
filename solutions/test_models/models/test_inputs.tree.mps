@@ -3,6 +3,7 @@
   <persistence version="9" />
   <languages>
     <use id="432dc58d-c6ff-4e39-ac6f-365885fa1c40" name="tree" version="-1" />
+    <engage id="c0f17d17-44f8-4b2e-b85a-7eef82be0d28" name="tree2graph.reduction" />
   </languages>
   <imports />
   <registry>
