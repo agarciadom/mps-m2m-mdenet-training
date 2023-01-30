@@ -3,9 +3,6 @@
   <persistence version="9" />
   <languages>
     <use id="432dc58d-c6ff-4e39-ac6f-365885fa1c40" name="tree" version="-1" />
-    <engage id="29cc3557-dfaa-4d93-b566-0513a0815a17" name="graph" />
-    <engage id="3acecc5e-2b38-4f39-aac8-f994dbc14134" name="tree2xml" />
-    <engage id="41300043-7cbb-44a9-8bb8-5797bda8ccc3" name="tree2graph_v1_onlyLoops" />
   </languages>
   <imports />
   <registry>
