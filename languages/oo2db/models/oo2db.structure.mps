@@ -37,7 +37,7 @@
     <property role="EcuMT" value="8291230363862780039" />
     <property role="TrG5h" value="JavaSQLMapping" />
     <property role="19KtqR" value="true" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
     <node concept="1TJgyj" id="7cgnxpcYky8" role="1TKVEi">
       <property role="IQ2ns" value="8291230363862780040" />
       <property role="20kJfa" value="from" />
