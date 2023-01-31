@@ -3,7 +3,7 @@
   <persistence version="9" />
   <languages>
     <use id="432dc58d-c6ff-4e39-ac6f-365885fa1c40" name="tree" version="-1" />
-    <engage id="c0f17d17-44f8-4b2e-b85a-7eef82be0d28" name="tree2graph.reduction" />
+    <engage id="3e152f47-0a78-4c81-a47d-881b545826d3" name="tree2graph.conditional" />
   </languages>
   <imports />
   <registry>
@@ -24,6 +24,15 @@
       <node concept="1JpCk4" id="2HO1M945zue" role="1JpV6X">
         <property role="1JpV6Z" value="t4" />
       </node>
+    </node>
+  </node>
+  <node concept="1JpCk4" id="16vbOUzPBKU">
+    <property role="1JpV6Z" value="a" />
+    <node concept="1JpCk4" id="16vbOUzPBKV" role="1JpV6X">
+      <property role="1JpV6Z" value="b" />
+    </node>
+    <node concept="1JpCk4" id="16vbOUzPBKX" role="1JpV6X">
+      <property role="1JpV6Z" value="c" />
     </node>
   </node>
 </model>

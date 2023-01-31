@@ -33,8 +33,10 @@ date: January 31, 2023
 
 * MPS has a very strong focus on code generation as the ultimate goal
 * Starting from a model, we apply 0+ M2M txs, and end with 1 M2T tx
-* It is still possible to produce multiple outputs from a model, but these
-  require some gymnastics (which we'll talk about later)
+* It is still possible to produce multiple outputs from a model, but
+  these require some
+  [gymnastics](https://www.f1re.io/multi-generators) or reconfiguring
+  our model
 
 ## Materials
 
@@ -186,7 +188,7 @@ non-standard interactions with MPS in slides would take a while!
 
 ![](img/reduction-rule-node.png)
 
-* We use an in-line template to create the dot `Node` from the graph `Node`
+* We use an in-line template to create the dot `NodeCreationStatement` from the graph `Node`
 * Note that non-root templates need to have "template regions" (marked as `<T T>`): everything else is ignored
 
 ## Property macro: node name
@@ -225,8 +227,7 @@ We use a property macro to replace the fixed "n" name with one computed from the
 
 ![](img/mapping-label-population.png)
 
-* We set the label of the `Node` reduction rule
-* There are other ways, e.g. the `LABEL` node macro
+* We use the LABEL node macro to associate the generated graph `Node` with the source dot `Node`
 
 ## Mapping labels: use
 
@@ -235,6 +236,12 @@ We use a property macro to replace the fixed "n" name with one computed from the
 * Reference macros can use the `get output X for (Y)` method in `genContext`
 * Note that this special syntax is reduced into pure Java by MPS built-in languages
 
+## Extra touch: graph name
+
+![](img/root-template-graph2dot-graph_name.png){height=400px}
+
+We add a property graph to name the dot graph after the original graph.
+
 ## Done!
 
 ![](img/digraph-produced.png)
@@ -242,15 +249,8 @@ We use a property macro to replace the fixed "n" name with one computed from the
 * We can now make the generator, and try previewing the generated files
 * We'll get the digraph file from the graph that we expected
 
-## Checklist
 
-* Root mapping and reduction rules
-* `COPY_SRCL` node macro
-* Property and reference macros
-* Mapping labels
-* ... and a lot of Alt+Enter and Ctrl+Space :-)
-
-# Tree to Graph
+# Tree to Graph (reductions)
 
 ## Tree language
 
@@ -325,6 +325,108 @@ We use LOOP to map inner nodes into edges.
 
 We use the `ancestor` [SModel](https://www.jetbrains.com/help/mps/smodel-language.html) operation to fetch the parent `Tree` in a typesafe manner.
 
-# Classes to Databases
+# Tree to Graph (weaving)
 
-## Testing
+## Weaving rules
+
+* Weaving rules allow for inserting nodes at arbitrary places of the output
+  model (e.g. for utility methods)
+* We'll create a different generator language which uses weaving rules instead:
+  `tree2graph.weaving`
+
+## Root template
+
+![](img/root-template-weaving.png)
+
+* This graph is empty!
+* We'll add nodes and edges via weaving rules
+
+## Weaving template for nodes
+
+![](img/weaving-template-node.png)
+
+Only the parts in template fragments are added.
+
+## Weaving rule for nodes
+
+![](img/weaving-rule-nodes.png)
+
+* We use code to insert the new node into the Graph produced from the
+  root of that Tree.
+* Using `get copied output`, we don't need a mapping label.
+
+## Weaving template for edges
+
+![](img/weaving-template-edge.png)
+
+## Weaving rule for edges
+
+![](img/weaving-rule-edge.png)
+
+# Tree to Graph (conditional roots)
+
+## Conditional roots
+
+* These allow for creating new roots from scratch, instead of mapping
+  an existing root
+* Can be useful for creating a single Graph that brings all Tree
+  objects together
+* We'll start by copying `tree2graph.reduction`
+
+## Root template: copying nodes
+
+![](img/root-template-conditional-copy_srcl.png)
+
+## Root template: looping for edges
+
+![](img/root-template-conditional-loop.png)
+
+## Replacing root mapping with conditional root
+
+![](img/replacing-root-template.png)
+
+In theory, we should be done, but...
+
+## Avoiding warnings from multiple output mappings
+
+![](img/warnings-from-multiple-output-mappings.png){height=400px}
+
+Not sure why this is needed!
+
+# Closing
+
+## What did we use?
+
+* Root mapping, conditional root, reduction, and weaving rules
+* `COPY_SRCL`, `LABEL`, and `LOOP` node macros
+* Property and reference macros
+* Mapping labels
+* ... and a lot of Alt+Enter and Ctrl+Space :-)
+
+## What did we miss?
+
+* Accessory models and utility classes
+* Devkits
+* Generation plans
+* Language extension
+* Other rules (abandon roots, patterns, etc.)
+* Pre/post-processing scripts
+* Template switches
+* ... and probably quite more!
+
+## Other resources to learn MPS
+
+* [MDENet community](https://community.mde-network.org/spaces/7191327/content)
+* [Fast Track to MPS](https://www.jetbrains.com/help/mps/fast-track-to-mps.html)
+* [Markus Voelter's intro course](https://github.com/markusvoelter/mpsintrocourse)
+* [HeavyMeta.tv](https://heavymeta.tv/)
+
+## Thank you!
+
+Antonio Garcia-Dominguez
+
+a.garcia-dominguez AT york.ac.uk
+
+[@antoniogado@fosstodon.org](https://fosstodon.org/@antoniogado)
+
+[\@antoniogado](http://twitter.com/antoniogado)
