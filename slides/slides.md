@@ -13,7 +13,7 @@ date: January 31, 2023
 * Programs written in MPS DSLs are not stored as raw text: instead, they are
   stored as abstract syntax trees (ASTs)
 * This makes it easier to compose languages, e.g. create an extension of Java
-  which new statements that are translated on the fly
+  with new statements that are translated on the fly
 
 ## What is this session about?
 
@@ -62,7 +62,7 @@ date: January 31, 2023
 
 * `Graph` is the rootable concept
 * Inside, we have `nodes` and `edges`
-* We have a working editor with a nice syntax
+* We already have a working editor
 * We do not have a Textgen module, though: we'll have to transform it to a
   language that does have one
 
@@ -294,7 +294,7 @@ We use a condition to only map the root `Tree`.
 ![](img/model-props-languages.png){height=300px}
 
 * By default, MPS will only use the generators of the languages instantiated in the model
-* We need to tell `tree` to use `tree2graph.reduction` during generation
+* We need to tell the `tree` model to use `tree2graph.reduction` during generation
 
 ## Root template (v2)
 
