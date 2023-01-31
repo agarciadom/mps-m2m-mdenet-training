@@ -413,7 +413,7 @@ Not sure why this is needed!
 * Pre/post-processing scripts
 * Template switches...
 
-A more complex OO2DB transformation is in the `oo2db-full` tag.
+If we have time, we could go through the `oo2db` transformation.
 
 ## Other resources to learn MPS
 
