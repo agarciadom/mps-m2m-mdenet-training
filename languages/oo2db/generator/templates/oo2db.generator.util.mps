@@ -228,7 +228,7 @@
             </node>
             <node concept="3cpWs6" id="63IsK9QaBi6" role="3cqZAp">
               <node concept="1rXfSq" id="63IsK9QaBsT" role="3cqZAk">
-                <ref role="37wK5l" node="63IsK9QarOy" resolve="getScalarSQLTypeFromClassifierType" />
+                <ref role="37wK5l" node="63IsK9QarOy" resolve="getSQLType" />
                 <node concept="2OqwBi" id="63IsK9QdwB1" role="37wK5m">
                   <node concept="37vLTw" id="63IsK9QdwdW" role="2Oq$k0">
                     <ref role="3cqZAo" node="nleYBGE$Xc" resolve="fieldDeclaration" />
@@ -855,7 +855,7 @@
                         <ref role="2Gs0qQ" node="63IsK9QsYPy" resolve="fk" />
                       </node>
                       <node concept="3TrEf2" id="63IsK9QtjXV" role="2OqNvi">
-                        <ref role="3Tt5mk" to="nwgr:7cgnxpcT2$j" resolve="table" />
+                        <ref role="3Tt5mk" to="nwgr:7cgnxpcT2$j" resolve="targetTable" />
                       </node>
                     </node>
                   </node>
@@ -873,7 +873,7 @@
                           <ref role="2Gs0qQ" node="63IsK9QsYPy" resolve="fk" />
                         </node>
                         <node concept="3TrEf2" id="63IsK9QtqGs" role="2OqNvi">
-                          <ref role="3Tt5mk" to="nwgr:7cgnxpcT2$j" resolve="table" />
+                          <ref role="3Tt5mk" to="nwgr:7cgnxpcT2$j" resolve="targetTable" />
                         </node>
                       </node>
                     </node>
@@ -887,7 +887,7 @@
                         <ref role="2Gs0qQ" node="63IsK9QsYPy" resolve="fk" />
                       </node>
                       <node concept="3TrEf2" id="63IsK9QtwV7" role="2OqNvi">
-                        <ref role="3Tt5mk" to="nwgr:7cgnxpcT2$j" resolve="table" />
+                        <ref role="3Tt5mk" to="nwgr:7cgnxpcT2$j" resolve="targetTable" />
                       </node>
                     </node>
                     <node concept="37vLTw" id="63IsK9Qtxuq" role="37wK5m">
