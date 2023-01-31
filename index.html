@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Antonio Garcia-Dominguez">
+  <meta name="dcterms.date" content="2023-01-31">
+  <title>Model-to-model transformations with JetBrains MPS</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/theme/night.css" id="theme">
+  <style>
+
+  h1.title {
+      font-size: 4ex;
+  }
+
+  .reveal section h2 {
+      font-size: 3ex;
+  }
+
+  .reveal section h1 {
+      font-size: 4ex;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Model-to-model transformations with JetBrains
+MPS</h1>
+  <p class="author">Antonio Garcia-Dominguez</p>
+  <p class="date">January 31, 2023</p>
+</section>
+
+<section>
+<section id="introduction" class="title-slide slide level1">
+<h1>Introduction</h1>
+
+</section>
+<section id="what-is-mps" class="slide level2">
+<h2>What is MPS?</h2>
+<ul>
+<li>The <a href="https://www.jetbrains.com/mps/">JetBrains
+Meta-Programming System</a> is a workbench for creating domain-specific
+languages (DSLs)</li>
+<li>Programs written in MPS DSLs are not stored as raw text: instead,
+they are stored as abstract syntax trees (ASTs)</li>
+<li>This makes it easier to compose languages, e.g. create an extension
+of Java which new statements that are translated on the fly</li>
+</ul>
+</section>
+<section id="what-is-this-session-about" class="slide level2">
+<h2>What is this session about?</h2>
+<ul>
+<li>2022 MDENet Symposium had an excellent intro to MPS from <a
+href="https://mde-network.com/annual-symposium-2022-recordings/">Vaclav
+Pech</a>. Quick refresher:
+<ul>
+<li>MPS project = languages + solutions</li>
+<li>Language = set of modules, including:
+<ul>
+<li>Structure: concept definitions</li>
+<li>Editors: concept presentation</li>
+<li>Constraints, Typesystem: validation</li>
+<li>Textgen: model-to-text (M2T)</li>
+<li>Generator: model-to-model (M2M)</li>
+</ul></li>
+</ul></li>
+<li>In this session, we focus on <strong>generators</strong></li>
+</ul>
+</section>
+<section id="mps-transformation-pipelines" class="slide level2">
+<h2>MPS transformation pipelines</h2>
+<p><img
+data-src="https://mermaid.ink/svg/pako:eNptjr0KwzAMhF9FaGohWTp66BTI0i6tp-JFxMoPxHZwZWhJ8u51Qrv1Jt19B6cZm2AZFXaRph4uN-MhS0dmKMvzUrPnSBIiuGDTyAvUe_E_q4LsxKDml3TsvwQO15M-Glxgy7FAx9HRYPPuvA0alJ4dG1T5tNxSGsWg8WuuUpJwf_sGlcTEBabJknA1UP7YoWppfOZ0Iv8I4efXDzSlSLY" /></p>
+<ul>
+<li>MPS has a very strong focus on code generation as the ultimate
+goal</li>
+<li>Starting from a model, we apply 0+ M2M txs, and end with 1 M2T
+tx</li>
+<li>It is still possible to produce multiple outputs from a model, but
+these require some <a
+href="https://www.f1re.io/multi-generators">gymnastics</a> or
+reconfiguring our model</li>
+</ul>
+</section>
+<section id="materials" class="slide level2">
+<h2>Materials</h2>
+<ul>
+<li>Available from <a
+href="https://github.com/agarciadom/mps-m2m-mdenet-training">Github</a></li>
+<li>Implements 4 toy languages:
+<ul>
+<li><code>dot</code>: Graphviz <a
+href="https://graphviz.org/doc/info/lang.html">Dot</a>-like; has
+Textgen</li>
+<li><code>graph</code>: graphs and edges; no Textgen</li>
+<li><code>sql_ddl</code>: tables, columns and foreign keys; has
+Textgen</li>
+<li><code>tree</code>: nested tree nodes; no Textgen</li>
+</ul></li>
+<li><code>full-version</code> tag has finished versions of all
+transformations</li>
+</ul>
+</section></section>
+<section>
+<section id="graph-to-dot" class="title-slide slide level1">
+<h1>Graph to Dot</h1>
+
+</section>
+<section id="graph-language" class="slide level2">
+<h2>Graph language</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img data-src="img/graph-screenshot.png" /></p>
+</div><div class="column" style="width:80%;">
+<ul>
+<li><code>Graph</code> is the rootable concept</li>
+<li>Inside, we have <code>nodes</code> and <code>edges</code></li>
+<li>We have a working editor with a nice syntax</li>
+<li>We do not have a Textgen module, though: we’ll have to transform it
+to a language that does have one</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="dot-language" class="slide level2">
+<h2>Dot language</h2>
+<p><img data-src="img/dot-screenshot.png" /></p>
+<ul>
+<li><code>DirectedGraph</code> is the rootable concept, which contains
+<code>IStatement</code>s</li>
+<li><code>IStatement</code>s can be default edge/graph/node assignments,
+or edge/node creation statements</li>
+<li>This DSL does have a Textgen, so it’s a good target language for our
+M2M tx</li>
+</ul>
+</section>
+<section id="before-we-do-anything" class="slide level2">
+<h2>Before we do anything…</h2>
+<p>Let’s try to generate text!</p>
+<p>Right-click on the input model and selecting “Preview Generated
+Text”:</p>
+<p><img data-src="img/preview-generated-text.png" /></p>
+</section>
+<section id="oops-nothing-useful" class="slide level2">
+<h2>Oops, nothing useful</h2>
+<p>Indeed, no text was produced at all:</p>
+<p><img data-src="img/no_text-screenshot.png" /></p>
+<p>We do need that Generator module.</p>
+</section>
+<section id="preparation-inter-language-dependencies"
+class="slide level2">
+<h2>Preparation: inter-language dependencies</h2>
+<p>First, ensure that <code>graph</code> depends on
+<code>dot</code>:</p>
+<p><img data-src="img/graph-to-dot-dependency.png" /></p>
+</section>
+<section id="creating-the-generator" class="slide level2">
+<h2>Creating the Generator</h2>
+<p>We’ll add a generator to <code>graph</code>:</p>
+<p><img data-src="img/create-generator.png" /></p>
+<p>We’ll call it <code>graph2dot</code>.</p>
+</section>
+<section id="generator-module" class="slide level2">
+<h2>Generator module</h2>
+<p><img data-src="img/generator-module.png" /></p>
+<p>We have now a generator module (G icon) with a generator model
+(marked as <code>@generator</code>).</p>
+<p>The generator model only contains a mapping configuration (arrow
+icon), which is the starting point of an MPS M2M transformation.</p>
+</section>
+<section id="mapping-configurations" class="slide level2">
+<h2>Mapping configurations</h2>
+<ul>
+<li>MCs have rules of various types, each with their own mini-DSLs: the
+most common ones are <em>root mapping</em> and <em>reduction
+rules</em></li>
+<li>Let’s try to implement this transformation with those two types</li>
+</ul>
+<p>From now on, I’ll switch between slides and live demo, as describing
+the non-standard interactions with MPS in slides would take a while!</p>
+</section>
+<section id="root-mapping" class="slide level2">
+<h2>Root mapping</h2>
+<ul>
+<li>Creates model roots: note that the input node does not have to be a
+root!</li>
+<li>Requires a root template, which is any root in the generator model
+that is not from a concept in the generator language</li>
+<li>We need to add <code>dot</code> to the languages used by the
+generator model</li>
+<li>Afterwards, we can just create a <code>DirectedGraph</code> inside
+the generator model</li>
+</ul>
+</section>
+<section id="root-template-v1" class="slide level2">
+<h2>Root template (v1)</h2>
+<p><img data-src="img/root-template-v1.png" /></p>
+<ul>
+<li>We customise the name of the digraph</li>
+<li>Set <code>Graph</code> as input type to help with type checks</li>
+<li>Note: the <code>root template</code> part is actually an annotation
+- it’s not part of the <code>DirectedGraph</code> object itself</li>
+</ul>
+</section>
+<section id="adding-root-mapping-to-mc" class="slide level2">
+<h2>Adding root mapping to MC</h2>
+<p><img data-src="img/tree-root-mapping.png" /></p>
+<ul>
+<li>We add the root mapping to the MC</li>
+<li>This says “consume any Graph and turn it into a DirectedGraph”</li>
+</ul>
+</section>
+<section id="preview-generated-text-v1" class="slide level2">
+<h2>Preview generated text (v1)</h2>
+<p><img data-src="img/preview-generated-text-graph2dot-v1.png" /></p>
+<ul>
+<li>If you try to preview the generated text, you’ll get something at
+least.</li>
+<li>Still not very useful, though: we need actual nodes and edges
+here!</li>
+</ul>
+</section>
+<section id="root-template-v2" class="slide level2">
+<h2>Root template (v2)</h2>
+<p><img data-src="img/root-template-v2.png" /></p>
+<ul>
+<li>Let’s populate the root template a bit more, so it’s closer to what
+we want: we add examples of nodes and edges</li>
+<li>A fixed output model is not very useful, though!</li>
+</ul>
+</section>
+<section id="node-and-property-macros" class="slide level2">
+<h2>Node and property macros</h2>
+<ul>
+<li>MPS follows a template-like approach for specifying M2M
+transformations</li>
+<li>Dynamic model sections are specified via <em>macros</em>:
+<ul>
+<li><strong>Node macros</strong> produce subtrees for the AST</li>
+<li><strong>Property macros</strong> compute the value of a specific
+property in an AST node</li>
+<li><strong>Reference macros</strong> compute a reference to an object
+in an AST node</li>
+</ul></li>
+<li>We create them by selecting a node/property and using Alt+Enter to
+trigger the appropriate <em>intention</em> (an in-place M2M
+transformation)</li>
+</ul>
+</section>
+<section id="copy_srcl-node-macros" class="slide level2">
+<h2>COPY_SRC(L) node macros</h2>
+<p><img data-src="img/tree-copy_srcl.png" height="350" /></p>
+<ul>
+<li>We’ll “copy” the input objects into the output, after they are
+reduced to compatible types.</li>
+<li>Tip: keep the bottom right Inspector pane open!</li>
+</ul>
+</section>
+<section id="reduction-rule-node-to-node" class="slide level2">
+<h2>Reduction rule: node to node</h2>
+<p><img data-src="img/reduction-rule-node.png" /></p>
+<ul>
+<li>We use an in-line template to create the dot
+<code>NodeCreationStatement</code> from the graph <code>Node</code></li>
+<li>Note that non-root templates need to have “template regions” (marked
+as <code>&lt;T T&gt;</code>): everything else is ignored</li>
+</ul>
+</section>
+<section id="property-macro-node-name" class="slide level2">
+<h2>Property macro: node name</h2>
+<p><img data-src="img/property-macro-node-name.png" /></p>
+<p>We use a property macro to replace the fixed “n” name with one
+computed from the node.</p>
+</section>
+<section id="reduction-rule-edge-to-edge" class="slide level2">
+<h2>Reduction rule: edge to edge</h2>
+<p><img data-src="img/reduction-rule-edge.png" /></p>
+<ul>
+<li>We create another reduction rule, this time from the graph
+<code>Edge</code>s to the dot <code>Edge</code>s.</li>
+<li>The inline template produces an edge from the placeholder
+<code>n</code> node to itself.</li>
+<li>We need to use reference macros to compute the source/target
+references to the dot <code>Node</code>s that were reduced from the
+graph <code>Node</code>s</li>
+</ul>
+</section>
+<section id="mapping-labels-concept" class="slide level2">
+<h2>Mapping labels: concept</h2>
+<ul>
+<li>The Edge reduction rule needs the dot <code>Node</code> produced
+from the graph <code>Node</code>
+<ul>
+<li>This is the same problem tackled by <code>equivalent()</code> in
+ETL/ATL</li>
+</ul></li>
+<li>In MPS, this is done through <em>mapping labels</em>:
+<ol type="1">
+<li>Define the label in the mapping configuration</li>
+<li>Ensure there are rules creating the association</li>
+<li>Use the label from the <code>genContext</code> passed to a
+macro</li>
+</ol></li>
+</ul>
+</section>
+<section id="mapping-labels-definition" class="slide level2">
+<h2>Mapping labels: definition</h2>
+<p><img data-src="img/mapping-label-node2node.png" /></p>
+<ul>
+<li>We add a new mapping label to the mapping configuration</li>
+<li>We can choose any name we want: here we went for something
+descriptive</li>
+<li>Mapping labels are typesafe: we specify both the input and output
+types</li>
+</ul>
+</section>
+<section id="mapping-labels-population" class="slide level2">
+<h2>Mapping labels: population</h2>
+<p><img data-src="img/mapping-label-population.png" /></p>
+<ul>
+<li>We use the LABEL node macro to associate the generated graph
+<code>Node</code> with the source dot <code>Node</code></li>
+</ul>
+</section>
+<section id="mapping-labels-use" class="slide level2">
+<h2>Mapping labels: use</h2>
+<p><img data-src="img/mapping-label-use.png" /></p>
+<ul>
+<li>Reference macros can use the <code>get output X for (Y)</code>
+method in <code>genContext</code></li>
+<li>Note that this special syntax is reduced into pure Java by MPS
+built-in languages</li>
+</ul>
+</section>
+<section id="extra-touch-graph-name" class="slide level2">
+<h2>Extra touch: graph name</h2>
+<p><img data-src="img/root-template-graph2dot-graph_name.png"
+height="400" /></p>
+<p>We add a property graph to name the dot graph after the original
+graph.</p>
+</section>
+<section id="done" class="slide level2">
+<h2>Done!</h2>
+<p><img data-src="img/digraph-produced.png" /></p>
+<ul>
+<li>We can now make the generator, and try previewing the generated
+files</li>
+<li>We’ll get the digraph file from the graph that we expected</li>
+</ul>
+</section></section>
+<section>
+<section id="tree-to-graph-reductions" class="title-slide slide level1">
+<h1>Tree to Graph (reductions)</h1>
+
+</section>
+<section id="tree-language" class="slide level2">
+<h2>Tree language</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img data-src="img/tree-screenshot.png" /></p>
+</div><div class="column" style="width:80%;">
+<ul>
+<li><code>Tree</code> is the only concept</li>
+<li>It is a more restricted version of the <code>Graph</code> DSL,
+really</li>
+<li>It would be nice to reuse the M2M from <code>Graph</code> to
+visualize these</li>
+<li>We’ll use a separate generator-only language to try approaches</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="tree2graph.reduction-language" class="slide level2">
+<h2>tree2graph.reduction language</h2>
+<ul>
+<li>We create a new language without any concepts</li>
+<li>We declare it “extends” <code>tree</code> and
+<code>graph</code></li>
+<li>We tell the generator model to use <code>graph</code></li>
+<li>The language only provides a generator from <code>tree</code> to
+<code>graph</code></li>
+</ul>
+</section>
+<section id="root-template-v1-1" class="slide level2">
+<h2>Root template (v1)</h2>
+<p><img data-src="img/root-template-tree2graph-v1.png" /></p>
+<p>For now, we just produce a fixed graph.</p>
+</section>
+<section id="root-mapping-rule" class="slide level2">
+<h2>Root mapping rule</h2>
+<p><img data-src="img/root-mapping-tree2graph.png" /></p>
+<p>We use a condition to only map the root <code>Tree</code>.</p>
+</section>
+<section id="engaging-the-generator" class="slide level2">
+<h2>Engaging the generator</h2>
+<p><img data-src="img/model-props-languages.png" height="300" /></p>
+<ul>
+<li>By default, MPS will only use the generators of the languages
+instantiated in the model</li>
+<li>We need to tell <code>tree</code> to use
+<code>tree2graph.reduction</code> during generation</li>
+</ul>
+</section>
+<section id="root-template-v2-1" class="slide level2">
+<h2>Root template (v2)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="img/root-template-tree2graph-v2.png"
+height="450" /></p>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>We can use reduction to map trees to graph nodes</li>
+<li>We can also use mapping labels to track this reduction</li>
+<li>We can only reduce nodes once: what do we do for the edges?</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="root-template-v3" class="slide level2">
+<h2>Root template (v3)</h2>
+<p><img data-src="img/root-template-tree2graph-v3.png"
+height="450" /></p>
+<p>We use LOOP to map inner nodes into edges.</p>
+</section>
+<section id="root-template-v3-target" class="slide level2">
+<h2>Root template (v3 target)</h2>
+<p><img data-src="img/root-template-tree2graph-v3-target.png"
+height="400" /></p>
+<p>We use the <code>ancestor</code> <a
+href="https://www.jetbrains.com/help/mps/smodel-language.html">SModel</a>
+operation to fetch the parent <code>Tree</code> in a typesafe
+manner.</p>
+</section></section>
+<section>
+<section id="tree-to-graph-weaving" class="title-slide slide level1">
+<h1>Tree to Graph (weaving)</h1>
+
+</section>
+<section id="weaving-rules" class="slide level2">
+<h2>Weaving rules</h2>
+<ul>
+<li>Weaving rules allow for inserting nodes at arbitrary places of the
+output model (e.g. for utility methods)</li>
+<li>We’ll create a different generator language which uses weaving rules
+instead: <code>tree2graph.weaving</code></li>
+</ul>
+</section>
+<section id="root-template" class="slide level2">
+<h2>Root template</h2>
+<p><img data-src="img/root-template-weaving.png" /></p>
+<ul>
+<li>This graph is empty!</li>
+<li>We’ll add nodes and edges via weaving rules</li>
+</ul>
+</section>
+<section id="weaving-template-for-nodes" class="slide level2">
+<h2>Weaving template for nodes</h2>
+<p><img data-src="img/weaving-template-node.png" /></p>
+<p>Only the parts in template fragments are added.</p>
+</section>
+<section id="weaving-rule-for-nodes" class="slide level2">
+<h2>Weaving rule for nodes</h2>
+<p><img data-src="img/weaving-rule-nodes.png" /></p>
+<ul>
+<li>We use code to insert the new node into the Graph produced from the
+root of that Tree.</li>
+<li>Using <code>get copied output</code>, we don’t need a mapping
+label.</li>
+</ul>
+</section>
+<section id="weaving-template-for-edges" class="slide level2">
+<h2>Weaving template for edges</h2>
+<p><img data-src="img/weaving-template-edge.png" /></p>
+</section>
+<section id="weaving-rule-for-edges" class="slide level2">
+<h2>Weaving rule for edges</h2>
+<p><img data-src="img/weaving-rule-edge.png" /></p>
+</section></section>
+<section>
+<section id="tree-to-graph-conditional-roots"
+class="title-slide slide level1">
+<h1>Tree to Graph (conditional roots)</h1>
+
+</section>
+<section id="conditional-roots" class="slide level2">
+<h2>Conditional roots</h2>
+<ul>
+<li>These allow for creating new roots from scratch, instead of mapping
+an existing root</li>
+<li>Can be useful for creating a single Graph that brings all Tree
+objects together</li>
+<li>We’ll start by copying <code>tree2graph.reduction</code></li>
+</ul>
+</section>
+<section id="root-template-copying-nodes" class="slide level2">
+<h2>Root template: copying nodes</h2>
+<p><img data-src="img/root-template-conditional-copy_srcl.png" /></p>
+</section>
+<section id="root-template-looping-for-edges" class="slide level2">
+<h2>Root template: looping for edges</h2>
+<p><img data-src="img/root-template-conditional-loop.png" /></p>
+</section>
+<section id="replacing-root-mapping-with-conditional-root"
+class="slide level2">
+<h2>Replacing root mapping with conditional root</h2>
+<p><img data-src="img/replacing-root-template.png" /></p>
+<p>In theory, we should be done, but…</p>
+</section>
+<section id="avoiding-warnings-from-multiple-output-mappings"
+class="slide level2">
+<h2>Avoiding warnings from multiple output mappings</h2>
+<p><img data-src="img/warnings-from-multiple-output-mappings.png"
+height="400" /></p>
+<p>Not sure why this is needed!</p>
+</section></section>
+<section>
+<section id="closing" class="title-slide slide level1">
+<h1>Closing</h1>
+
+</section>
+<section id="what-did-we-use" class="slide level2">
+<h2>What did we use?</h2>
+<ul>
+<li>Root mapping, conditional root, reduction, and weaving rules</li>
+<li><code>COPY_SRCL</code>, <code>LABEL</code>, and <code>LOOP</code>
+node macros</li>
+<li>Property and reference macros</li>
+<li>Mapping labels</li>
+<li>… and a lot of Alt+Enter and Ctrl+Space :-)</li>
+</ul>
+</section>
+<section id="what-did-we-miss" class="slide level2">
+<h2>What did we miss?</h2>
+<ul>
+<li>Accessory models and utility classes</li>
+<li>Devkits</li>
+<li>Generation plans</li>
+<li>Language extension</li>
+<li>Other rules (abandon roots, patterns, etc.)</li>
+<li>Pre/post-processing scripts</li>
+<li>Template switches…</li>
+</ul>
+<p>A more complex OO2DB transformation is in the <code>oo2db-full</code>
+tag.</p>
+</section>
+<section id="other-resources-to-learn-mps" class="slide level2">
+<h2>Other resources to learn MPS</h2>
+<ul>
+<li><a
+href="https://community.mde-network.org/spaces/7191327/content">MDENet
+community</a></li>
+<li><a
+href="https://www.jetbrains.com/help/mps/fast-track-to-mps.html">Fast
+Track to MPS</a></li>
+<li><a href="https://github.com/markusvoelter/mpsintrocourse">Markus
+Voelter’s intro course</a></li>
+<li><a href="https://heavymeta.tv/">HeavyMeta.tv</a></li>
+</ul>
+</section>
+<section id="thank-you" class="slide level2">
+<h2>Thank you!</h2>
+<p>Antonio Garcia-Dominguez</p>
+<p>a.garcia-dominguez AT york.ac.uk</p>
+<p><a href="https://fosstodon.org/@antoniogado"><span class="citation"
+data-cites="antoniogado">@antoniogado</span><span class="citation"
+data-cites="fosstodon.org">@fosstodon.org</span></a></p>
+<p><a href="http://twitter.com/antoniogado">@antoniogado</a></p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@^4//dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://unpkg.com/reveal.js@^4//plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/search/search.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
