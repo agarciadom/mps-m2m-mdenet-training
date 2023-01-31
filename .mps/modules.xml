@@ -7,9 +7,6 @@
       <modulePath path="$PROJECT_DIR$/languages/oo2db/oo2db.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/languages/sql_ddl/sql_ddl.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/languages/tree/tree.mpl" folder="" />
-      <modulePath path="$PROJECT_DIR$/languages/tree2graph.conditional/tree2graph.conditional.mpl" folder="" />
-      <modulePath path="$PROJECT_DIR$/languages/tree2graph.reduction/tree2graph.reduction.mpl" folder="" />
-      <modulePath path="$PROJECT_DIR$/languages/tree2graph.weaving/tree2graph.weaving.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/test_models/test_models.msd" folder="" />
     </projectModules>
   </component>
