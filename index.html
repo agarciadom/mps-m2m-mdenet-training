@@ -70,7 +70,7 @@ languages (DSLs)</li>
 <li>Programs written in MPS DSLs are not stored as raw text: instead,
 they are stored as abstract syntax trees (ASTs)</li>
 <li>This makes it easier to compose languages, e.g. create an extension
-of Java which new statements that are translated on the fly</li>
+of Java with new statements that are translated on the fly</li>
 </ul>
 </section>
 <section id="what-is-this-session-about" class="slide level2">
@@ -141,7 +141,7 @@ transformations</li>
 <ul>
 <li><code>Graph</code> is the rootable concept</li>
 <li>Inside, we have <code>nodes</code> and <code>edges</code></li>
-<li>We have a working editor with a nice syntax</li>
+<li>We already have a working editor</li>
 <li>We do not have a Textgen module, though: we’ll have to transform it
 to a language that does have one</li>
 </ul>
@@ -423,7 +423,7 @@ visualize these</li>
 <ul>
 <li>By default, MPS will only use the generators of the languages
 instantiated in the model</li>
-<li>We need to tell <code>tree</code> to use
+<li>We need to tell the <code>tree</code> model to use
 <code>tree2graph.reduction</code> during generation</li>
 </ul>
 </section>
