@@ -411,8 +411,9 @@ Not sure why this is needed!
 * Language extension
 * Other rules (abandon roots, patterns, etc.)
 * Pre/post-processing scripts
-* Template switches
-* ... and probably quite more!
+* Template switches...
+
+A more complex OO2DB transformation is in the `oo2db-full` tag.
 
 ## Other resources to learn MPS
 
